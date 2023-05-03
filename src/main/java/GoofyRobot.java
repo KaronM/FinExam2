@@ -20,6 +20,7 @@ public class GoofyRobot
     private final static double MAX_POWER_LEVEL_DISCHARGE_RATE = 100/2.0; // in levels/sec
     private final static long SLEEP_TIME = (long)((100/MAX_POWER_LEVEL_DISCHARGE_RATE)/15*1000);
     private int currentState;
+    private int counter;
     private StopWatch timer;
     private double startingPowerLevel;
     private double powerLevel; // measured from 0 to 100; with 0 no power left
@@ -47,6 +48,7 @@ public class GoofyRobot
     
     private void init(long idNumber, int powerLevel)
     {
+        counter = 12;
         timer = new StopWatch();
         timer.reset();
         this.powerLevel = powerLevel;
@@ -74,6 +76,7 @@ public class GoofyRobot
     {
         if (getPowerLevel() > 0)
         {
+            counter--;
             path.add("Move Left");
             timer.start();
             currentState = MOVING_LEFT;
@@ -92,6 +95,7 @@ public class GoofyRobot
     {
         if (getPowerLevel() > 0)
         {
+            counter--;
             path.add("Move Right");
             timer.start();
             currentState = MOVING_RIGHT;
@@ -110,6 +114,7 @@ public class GoofyRobot
     {
         if (getPowerLevel() > 0)
         {
+            counter--;
             path.add("Move Forward");
             timer.start();
             currentState = MOVING_FORWARD;
@@ -128,6 +133,7 @@ public class GoofyRobot
     {
         if (getPowerLevel() > 0)
         {
+            counter--;
             path.add("Move Backward");
             timer.start();
             currentState = MOVING_BACKWARD;
@@ -151,7 +157,7 @@ public class GoofyRobot
         }
         
         powerLevel = startingPowerLevel-(MAX_POWER_LEVEL_DISCHARGE_RATE*timer.elapsedTime());
-        if (powerLevel <= 0)
+        if (powerLevel <= 0 || counter <= 0)
         {
             stop();
             powerLevel = 0;

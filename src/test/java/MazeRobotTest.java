@@ -22,9 +22,6 @@ class MazeRobotTest {
                 "Move Right\n" +
                 "Move Backward\n" +
                 "Move Left\n" +
-                "Move Forward\n" +
-                "Move Left\n" +
-                "Move Backward\n" +
                 "stop\n";
         assertEquals(expected,robot.toString());
     }
@@ -46,9 +43,6 @@ class MazeRobotTest {
                 "Move Right\n" +
                 "Move Backward\n" +
                 "Move Right\n" +
-                "Move Forward\n" +
-                "Move Left\n" +
-                "Move Backward\n" +
                 "stop\n";
         assertEquals(expected,robot.toString());
     }
@@ -70,9 +64,6 @@ class MazeRobotTest {
                 "Move Right\n" +
                 "Move Backward\n" +
                 "Move Left\n" +
-                "Move Backward\n" +
-                "Move Right\n" +
-                "Move Forward\n" +
                 "stop\n";
         assertEquals(expected,robot.toString());
     }
